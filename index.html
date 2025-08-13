@@ -251,22 +251,12 @@
             overflow: hidden;
         }
         
-        .process::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1702318262466-095ea83867b4?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            opacity: 0.1;
-            z-index: 1;
+        .process .container {
+            position: relative;
+            z-index: 2;
         }
         
-        .process .container {
+        .process .process-grid {
             position: relative;
             z-index: 2;
         }
@@ -337,10 +327,7 @@
 
         /* ===== CTA BANNER ===== */
         .cta-banner {
-            background-image: url('https://images.unsplash.com/photo-1578000729845-0374f0184108?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             color: white;
             padding: 120px 0;
             text-align: center;
@@ -348,13 +335,15 @@
             overflow: hidden;
         }
 
-        .cta-banner h2 {
+                .cta-banner h2 {
             font-size: 64px;
             font-weight: 800;
             margin-bottom: 32px;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 3;
         }
-
+        
         .cta-banner p {
             font-size: 22px;
             color: white;
@@ -363,6 +352,8 @@
             margin-left: auto;
             margin-right: auto;
             font-weight: 300;
+            position: relative;
+            z-index: 3;
         }
 
         .cta-banner .cta-button {
@@ -376,9 +367,11 @@
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
             cursor: pointer;
-            border: none;
+            border: 2px solid white;
+            background: transparent;
             font-family: inherit;
-            border: 2px solid;
+            position: relative;
+            z-index: 3;
         }
 
         .cta-banner .cta-button:hover {
@@ -1120,6 +1113,26 @@
             z-index: -2;
         }
         
+        /* ===== PROCESS & CTA IRIDESCENCE BACKGROUNDS ===== */
+        #process-iridescence-bg {
+            z-index: 1;
+        }
+        
+        #cta-iridescence-bg {
+            z-index: 1;
+        }
+        
+        /* ===== CTA BANNER CONTENT POSITIONING ===== */
+        .cta-banner .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-banner .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
         .hero {
             position: relative;
             min-height: 100vh;
@@ -1376,6 +1389,7 @@
 
     <!-- ===== PROCESS SECTION ===== -->
     <section class="process" id="process">
+        <div class="iridescence-container" id="process-iridescence-bg"></div>
         <div class="container">
             <h2 class="section-title fade-in-up">From Vision to Reality</h2>
             <div class="process-grid">
@@ -1441,6 +1455,7 @@
 
     <!-- ===== CTA BANNER ===== -->
     <section class="cta-banner">
+        <div class="iridescence-container" id="cta-iridescence-bg"></div>
         <div class="container">
             <div class="cta-content fade-in-up">
                 <h2>Ready to elevate your online presence?</h2>
@@ -1690,7 +1705,18 @@
         
         // ===== IRIDESCENCE BACKGROUND FUNCTIONALITY =====
         function initializeIridescence() {
-            const container = document.getElementById('iridescence-bg');
+            // Initialize hero iridescence
+            initializeIridescenceForContainer('iridescence-bg', false);
+            
+            // Initialize process iridescence (black and white)
+            initializeIridescenceForContainer('process-iridescence-bg', true);
+            
+            // Initialize CTA banner iridescence (black and white)
+            initializeIridescenceForContainer('cta-iridescence-bg', true);
+        }
+        
+        function initializeIridescenceForContainer(containerId, isBlackWhite) {
+            const container = document.getElementById(containerId);
             if (!container) return;
             
             // Create canvas for WebGL
@@ -1708,7 +1734,41 @@
                 }
             `;
             
-            const fragmentShaderSource = `
+            const fragmentShaderSource = isBlackWhite ? `
+                precision highp float;
+                
+                uniform float uTime;
+                uniform vec2 uResolution;
+                uniform vec2 uMouse;
+                uniform float uAmplitude;
+                uniform float uSpeed;
+                
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / uResolution.xy;
+                    vec2 centered = (uv * 2.0 - 1.0) * uResolution.xy / min(uResolution.x, uResolution.y);
+                    
+                    centered += (uMouse - vec2(0.5)) * uAmplitude;
+                    
+                    float d = -uTime * 0.5 * uSpeed;
+                    float a = 0.0;
+                    
+                    for (float i = 0.0; i < 8.0; ++i) {
+                        a += cos(i - d - a * centered.x);
+                        d += sin(centered.y * i + a);
+                    }
+                    
+                    d += uTime * 0.5 * uSpeed;
+                    vec3 col = vec3(
+                        cos(centered * vec2(d, a)) * 0.6 + 0.4,
+                        cos(a + d) * 0.5 + 0.5
+                    );
+                    
+                    // Black and white version
+                    float gray = (col.r + col.g + col.b) / 3.0;
+                    col = vec3(gray * 0.3); // Dark gray/black
+                    gl_FragColor = vec4(col, 0.6);
+                }
+            ` : `
                 precision highp float;
                 
                 uniform float uTime;
