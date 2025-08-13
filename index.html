@@ -19,6 +19,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
@@ -92,43 +97,49 @@
             transform: translateY(-2px);
         }
 
-        .nav-links a.active {
-            background: #ff6b35;
-            color: white;
-        }
+
 
         /* ===== HERO SECTION ===== */
         .hero {
-            padding: 160px 0 100px;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1644426358812-879f02d1d867?q=80&w=1228&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
             position: relative;
+            height: 100vh;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            background: none;
+            margin-top: 80px; /* Add space below navigation */
         }
-
+        
         .hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 120px 24px;
             width: 100%;
         }
-
-        .hero h1 {
-            font-size: 85px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 32px;
-            color: white;
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        .hero p {
-            font-size: 24px;
+        
+        .hero h1 {
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+            min-height: 72px; /* Ensures consistent height during typing */
+            font-weight: 800;
             color: white;
-            margin-bottom: 48px;
+            font-size: 60pt;
+        }
+        
+        .hero p {
+            margin: 20px 0 30px 0;
+            padding: 0;
+            font-size: 26px;
+            color: white;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -210,8 +221,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
             color: white;
+        }
+        
+        .feature-icon svg {
+            width: 40px;
+            height: 40px;
         }
 
         .feature-card h3 {
@@ -318,138 +333,7 @@
             line-height: 1.6;
         }
 
-        /* ===== PRICING SECTION ===== */
-        .pricing {
-            padding: 120px 0;
-            background: white;
-            position: relative;
-        }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 100px;
-        }
-
-        .pricing-card {
-            background: white;
-            padding: 50px 30px;
-            border: 2px solid #e9ecef;
-            border-radius: 16px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 500px;
-            backdrop-filter: blur(10px);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #ff6b35;
-            border-width: 3px;
-        }
-
-        .pricing-card.popular {
-            border-color: #ff6b35;
-            border-width: 3px;
-            transform: scale(1.02);
-            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-        }
-
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-
-        .pricing-card h3 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #000000;
-            letter-spacing: 0.5px;
-        }
-
-        .price {
-            font-size: 48px;
-            font-weight: 800;
-            color: #ff6b35;
-            margin-bottom: 16px;
-        }
-
-        .price-subtitle {
-            color: #666;
-            margin-bottom: 32px;
-            font-size: 16px;
-            line-height: 1.5;
-            max-width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 32px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            color: #555;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 15px;
-            text-align: center;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #ff6b35;
-            font-weight: bold;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-cta {
-            background: black;
-            color: white;
-            padding: 16px 32px;
-            border: none;
-            border-radius: 25px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            border: 1px solid #000000;
-            text-decoration: none;
-        }
-
-        .pricing-cta:hover {
-            background: white;
-            color: black;
-            transform: translateY(-3px);
-            border-color: black;
-        }
-
-        .pricing-card.popular .pricing-cta {
-            background: linear-gradient(135deg, #000000, #1a1a1a);
-        }
-
-        .pricing-card.popular .pricing-cta:hover {
-            background: linear-gradient(135deg, #1a1a1a, #333333);
-            transform: translateY(-3px);
-        }
 
         /* ===== CTA BANNER ===== */
         .cta-banner {
@@ -736,10 +620,7 @@
                 gap: 60px;
             }
             
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
+
             
             .footer-content {
                 gap: 60px;
@@ -754,7 +635,7 @@
             .nav-links {
                 position: fixed;
                 top: 80px;
-                left: -100%;
+                left: 0;
                 width: 100%;
                 height: calc(100vh - 80px);
                 background: #000000;
@@ -762,12 +643,14 @@
                 justify-content: flex-start;
                 align-items: center;
                 padding-top: 40px;
-                transition: 0.3s;
+                transition: transform 0.3s ease;
                 gap: 20px;
+                transform: translateX(-100%);
+                will-change: transform;
             }
             
             .nav-links.active {
-                left: 0;
+                transform: translateX(0);
             }
             
             .nav-links a {
@@ -776,22 +659,27 @@
             }
             
             .hero {
-                padding: 140px 0 80px;
+                padding: 100px 0 60px;
+                margin-top: 0;
+            }
+            
+            .hero .container {
+                padding: 40px 24px;
             }
             
             .hero h1 {
-                font-size: 42px;
+                font-size: 28px;
                 line-height: 1.2;
             }
             
             .hero p {
-                font-size: 18px;
+                font-size: 14px;
                 max-width: 100%;
             }
             
             .cta-button {
-                padding: 18px 36px;
-                font-size: 16px;
+                padding: 14px 28px;
+                font-size: 14px;
             }
             
             .section-title {
@@ -815,8 +703,12 @@
             .feature-icon {
                 width: 60px;
                 height: 60px;
-                font-size: 28px;
                 margin-bottom: 24px;
+            }
+            
+            .feature-icon svg {
+                width: 32px;
+                height: 32px;
             }
             
             .feature-card h3 {
@@ -852,43 +744,9 @@
                 font-size: 16px;
             }
             
-            .pricing {
-                padding: 80px 0;
-            }
+
             
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin-top: 60px;
-            }
-            
-            .pricing-card {
-                padding: 40px 25px;
-                min-height: auto;
-            }
-            
-            .pricing-card h3 {
-                font-size: 24px;
-            }
-            
-            .price {
-                font-size: 40px;
-            }
-            
-            .price-subtitle {
-                font-size: 14px;
-                max-width: 100%;
-            }
-            
-            .pricing-features li {
-                font-size: 14px;
-                padding: 8px 0;
-            }
-            
-            .pricing-cta {
-                padding: 14px 28px;
-                font-size: 14px;
-            }
+
             
             .cta-banner {
                 padding: 80px 0;
@@ -957,20 +815,28 @@
                 padding: 0 16px;
             }
             
+            .hero {
+                padding: 80px 0 40px;
+            }
+            
+            .hero .container {
+                padding: 30px 24px;
+            }
+            
             .hero h1 {
-                font-size: 36px;
+                font-size: 24px;
             }
             
             .hero p {
-                font-size: 16px;
-                margin-bottom: 32px;
+                font-size: 13px;
+                margin-bottom: 20px;
             }
             
             .cta-button {
-                padding: 16px 32px;
-                font-size: 15px;
+                padding: 12px 24px;
+                font-size: 13px;
                 width: 100%;
-                max-width: 280px;
+                max-width: 240px;
             }
             
             .section-title {
@@ -989,8 +855,12 @@
             .feature-icon {
                 width: 50px;
                 height: 50px;
-                font-size: 24px;
                 margin-bottom: 20px;
+            }
+            
+            .feature-icon svg {
+                width: 28px;
+                height: 28px;
             }
             
             .feature-card h3 {
@@ -1027,45 +897,7 @@
                 font-size: 15px;
             }
             
-            .pricing {
-                padding: 60px 0;
-            }
-            
-            .pricing-grid {
-                gap: 25px;
-                margin-top: 50px;
-            }
-            
-            .pricing-card {
-                padding: 30px 20px;
-            }
-            
-            .pricing-card h3 {
-                font-size: 22px;
-            }
-            
-            .price {
-                font-size: 36px;
-            }
-            
-            .price-subtitle {
-                font-size: 13px;
-                margin-bottom: 24px;
-            }
-            
-            .pricing-features {
-                margin-bottom: 24px;
-            }
-            
-            .pricing-features li {
-                font-size: 13px;
-                padding: 6px 0;
-            }
-            
-            .pricing-cta {
-                padding: 12px 24px;
-                font-size: 13px;
-            }
+
             
             .cta-banner {
                 padding: 60px 0;
@@ -1140,12 +972,20 @@
         }
 
         @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0 30px;
+            }
+            
+            .hero .container {
+                padding: 20px 24px;
+            }
+            
             .hero h1 {
-                font-size: 32px;
+                font-size: 20px;
             }
             
             .hero p {
-                font-size: 15px;
+                font-size: 12px;
             }
             
             .section-title {
@@ -1160,9 +1000,7 @@
                 font-size: 20px;
             }
             
-            .pricing-card h3 {
-                font-size: 20px;
-            }
+
             
             .cta-banner h2 {
                 font-size: 24px;
@@ -1190,8 +1028,7 @@
             }
             
             .features,
-            .process,
-            .pricing {
+            .process {
                 padding: 60px 0;
             }
             
@@ -1203,8 +1040,252 @@
                 margin-top: 40px;
             }
             
-            .pricing-grid {
-                margin-top: 40px;
+
+        }
+
+        /* ===== TYPING EFFECT STYLES ===== */
+        .typing-cursor {
+            display: inline-block;
+            margin-left: 0.25rem;
+            opacity: 1;
+            animation: blink 0.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        #typing-text {
+            min-height: 1.2em;
+            display: inline-block;
+        }
+        
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scale-in.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .stagger-delay-1 { transition-delay: 0.1s; }
+        .stagger-delay-2 { transition-delay: 0.2s; }
+        .stagger-delay-3 { transition-delay: 0.3s; }
+        
+        /* ===== IRIDESCENCE BACKGROUND EFFECT ===== */
+        .iridescence-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: none;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 120px 24px;
+        }
+        
+        /* ===== SERVICES SECTION STYLES ===== */
+        .services {
+            padding: 120px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        
+        .services-subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 100%;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b35;
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+            border-radius: 20px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .service-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        
+        .service-card p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        /* ===== RESPONSIVE DESIGN FOR SERVICES ===== */
+        @media (max-width: 768px) {
+            .services {
+                padding: 80px 0;
+            }
+            
+            .services-header {
+                margin-bottom: 60px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .service-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .service-card h3 {
+                font-size: 24px;
+            }
+            
+            .service-card p {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .services {
+                padding: 40px 0 60px;
+            }
+            
+            .services-header {
+                margin-bottom: 50px;
+            }
+            
+            .services-grid {
+                gap: 30px;
+            }
+            
+            .service-card {
+                padding: 25px 16px;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .service-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .service-card h3 {
+                font-size: 22px;
+            }
+            
+            .service-card p {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services {
+                padding: 30px 0 40px;
             }
         }
     </style>
@@ -1221,9 +1302,10 @@
                 </a>
                 <nav>
                     <ul class="nav-links">
+                        <li><a href="#services">Services</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#process">Process</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
+    
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <div class="hamburger">
@@ -1238,32 +1320,55 @@
 
     <!-- ===== HERO SECTION ===== -->
     <section class="hero">
+        <div class="iridescence-container" id="iridescence-bg"></div>
         <div class="container">
-            <h1>We create websites that move at the speed of your ideas.</h1>
-            <p>Modern web development tailored to amplify your brand and drive results—fast, reliable, and affordable.</p>
-            <a href="#pricing" class="cta-button">Get a Quote</a>
+            <div class="hero-content">
+                <h1 id="typing-text" style="font-size: 45pt;">We create websites that move at the speed of your ideas.</h1>
+                <p>Modern web development tailored to amplify your brand and drive results—fast, reliable, and transformative.</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
         </div>
     </section>
 
-    <!-- ===== FEATURES SECTION ===== -->
-    <section class="features" id="features">
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">What Sets Us Apart</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Launch Quickly</h3>
-                    <p>Efficient project delivery ensures your website goes live in under two weeks without sacrificing quality.</p>
+            <div class="services-header fade-in-up">
+                <h2 class="section-title">Our Services</h2>
+                <p class="services-subtitle">We don't just build websites — we create online experiences that convert visitors into customers.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in-up stagger-delay-1">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 18L22 12L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 6L2 12L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Web Design & Development</h3>
+                    <p>Custom, responsive, and high-performing websites built to represent your brand and drive results.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>SEO & Hosting Included</h3>
-                    <p>We deploy fully hosted, SEO-optimized websites designed to increase your visibility from day one.</p>
+                <div class="service-card fade-in-up stagger-delay-2">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Website Revamps</h3>
+                    <p>Modernize outdated websites with fresh designs, improved performance, and better functionality.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile & Conversion Optimized</h3>
-                    <p>Responsive designs built to engage your audience and maximize conversions across all devices.</p>
+                <div class="service-card fade-in-up stagger-delay-3">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 20V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Conversion Rate Optimization (CRO)</h3>
+                    <p>We analyze visitor behavior and tweak your site's design, layout, and calls-to-action to turn more clicks into customers.</p>
                 </div>
             </div>
         </div>
@@ -1272,19 +1377,19 @@
     <!-- ===== PROCESS SECTION ===== -->
     <section class="process" id="process">
         <div class="container">
-            <h2 class="section-title">From Vision to Reality</h2>
+            <h2 class="section-title fade-in-up">From Vision to Reality</h2>
             <div class="process-grid">
-                <div class="process-step">
+                <div class="process-step fade-in-left stagger-delay-1">
                     <div class="process-number">1</div>
                     <h3>Discovery</h3>
                     <p>We analyze your business goals and user needs to craft a tailored digital solution.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step fade-in-up stagger-delay-2">
                     <div class="process-number">2</div>
                     <h3>Design & Development</h3>
                     <p>Creating sleek, functional websites that reflect your brand and perform seamlessly.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step fade-in-right stagger-delay-3">
                     <div class="process-number">3</div>
                     <h3>Launch & Support</h3>
                     <p>End-to-end deployment with ongoing maintenance and performance monitoring to ensure continuous growth.</p>
@@ -1293,67 +1398,55 @@
         </div>
     </section>
 
-    <!-- ===== PRICING SECTION ===== -->
-    <section class="pricing" id="pricing">
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">Pricing Plans</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Launch</h3>
-                    <div class="price">P2,500</div>
-                    <div class="price-subtitle">Ideal for small businesses launching their online presence.</div>
-                    <ul class="pricing-features">
-                        <li>1-3 pages</li>
-                        <li>Mobile-friendly design</li>
-                        <li>Domain & hosting setup</li>
-                        <li>Basic SEO optimization</li>
-                        <li>Contact form integration</li>
-                        <li>1 month free support, then P250/month</li>
-                    </ul>
-                    <a href="#contact" class="pricing-cta">Choose Plan</a>
+            <h2 class="section-title fade-in-up">What Sets Us Apart</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up stagger-delay-1">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Launch Quickly</h3>
+                    <p>Efficient project delivery ensures your website goes live in under 2 to 4 weeks without sacrificing quality.</p>
                 </div>
-                
-                <div class="pricing-card">
-                    <h3>Growth</h3>
-                    <div class="price">P5,000</div>
-                    <div class="price-subtitle">Perfect for growing businesses looking to scale.</div>
-                    <ul class="pricing-features">
-                        <li>5-7 pages</li>
-                        <li>Includes Starter features</li>
-                        <li>Advanced SEO optimization</li>
-                        <li>Custom functionality </li>
-                        <li>Analytics & reporting</li>
-                        <li>Priority support</li>
-                        <li>3 months free support, then P500/month</li>
-                    </ul>
-                    <a href="#contact" class="pricing-cta">Choose Plan</a>
+                <div class="feature-card fade-in-up stagger-delay-2">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>SEO & Hosting Included</h3>
+                    <p>We deploy fully hosted, SEO-optimized websites designed to increase your visibility from day one.</p>
                 </div>
-                
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="price">P10,000+</div>
-                    <div class="price-subtitle">Custom solutions for established brands seeking maximum impact.</div>
-                    <ul class="pricing-features">
-                        <li>Unlimited pages</li>
-                        <li>Includes Pro features</li>
-                        <li>E-commerce integration</li>
-                        <li>Advanced integrations</li>
-                        <li>Performance optimization</li>
-                        <li>Dedicated account manager</li>
-                        <li>6 months free support, then P1,000/month</li>
-                    </ul>
-                    <a href="#contact" class="pricing-cta">Choose Plan</a>
+                <div class="feature-card fade-in-up stagger-delay-3">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="12" y1="18" x2="12.01" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Mobile & Conversion Optimized</h3>
+                    <p>Responsive designs built to engage your audience and maximize conversions across all devices.</p>
                 </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- ===== CTA BANNER ===== -->
     <section class="cta-banner">
         <div class="container">
-            <h2>Ready to elevate your online presence?</h2>
-            <p>Partner with us to create a website that drives results and grows your business.</p>
-            <a href="#contact" class="cta-button">Get Started</a>
+            <div class="cta-content fade-in-up">
+                <h2>Ready to elevate your online presence?</h2>
+                <p>Partner with us to create a website that drives results and grows your business.</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
         </div>
     </section>
 
@@ -1361,20 +1454,20 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="contact-form">
+                <div class="contact-form fade-in-left">
                     <h3>Contact Us</h3>
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
                         <a href="https://wa.me/+26774054172" class="whatsapp-btn">
@@ -1386,7 +1479,7 @@
                     </form>
                 </div>
                 
-                                 <div class="contact-info">
+                                 <div class="contact-info fade-in-right">
                      <h3>Contact Information</h3>
                      <p><strong>Email:</strong> buildwithlumo@gmail.com</p>
                      <p><strong>Phone:</strong> +267 74 054 172</p>
@@ -1406,7 +1499,7 @@
                              </a>
                              <a href="https://wa.me/+26774054172" target="_blank" class="social-icon" aria-label="WhatsApp">
                                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.885 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                                  </svg>
                              </a>
                              <a href="https://www.linkedin.com/in/lumo-undefined-8160b7377/" target="_blank" class="social-icon" aria-label="LinkedIn">
@@ -1430,8 +1523,95 @@
         </div>
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ===== TYPING EFFECT SCRIPT ===== -->
     <script>
+        // ===== TYPING EFFECT CLASS =====
+        class TextType {
+            constructor(element, texts, options = {}) {
+                this.element = element;
+                this.texts = Array.isArray(texts) ? texts : [texts];
+                this.options = {
+                    typingSpeed: options.typingSpeed || 75,
+                    pauseDuration: options.pauseDuration || 1500,
+                    deletingSpeed: options.deletingSpeed || 30,
+                    loop: options.loop !== false,
+                    showCursor: options.showCursor !== false,
+                    cursorCharacter: options.cursorCharacter || '|',
+                    ...options
+                };
+                
+                this.currentTextIndex = 0;
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                this.displayedText = '';
+                this.cursorElement = null;
+                
+                this.init();
+            }
+            
+            init() {
+                if (this.options.showCursor) {
+                    this.createCursor();
+                }
+                this.startTyping();
+            }
+            
+            createCursor() {
+                this.cursorElement = document.createElement('span');
+                this.cursorElement.className = 'typing-cursor';
+                this.cursorElement.textContent = this.options.cursorCharacter;
+                this.element.appendChild(this.cursorElement);
+            }
+            
+            startTyping() {
+                const currentText = this.texts[this.currentTextIndex];
+                
+                if (this.isDeleting) {
+                    if (this.displayedText === '') {
+                        this.isDeleting = false;
+                        this.currentTextIndex = (this.currentTextIndex + 1) % this.texts.length;
+                        this.currentCharIndex = 0;
+                        
+                        setTimeout(() => {
+                            this.startTyping();
+                        }, this.options.pauseDuration);
+                        return;
+                    }
+                    
+                    this.displayedText = this.displayedText.slice(0, -1);
+                    this.updateDisplay();
+                    
+                    setTimeout(() => {
+                        this.startTyping();
+                    }, this.options.deletingSpeed);
+                } else {
+                    if (this.currentCharIndex < currentText.length) {
+                        this.displayedText += currentText[this.currentCharIndex];
+                        this.currentCharIndex++;
+                        this.updateDisplay();
+                        
+                        setTimeout(() => {
+                            this.startTyping();
+                        }, this.options.typingSpeed);
+                    } else {
+                        if (this.texts.length > 1) {
+                            setTimeout(() => {
+                                this.isDeleting = true;
+                                this.startTyping();
+                            }, this.options.pauseDuration);
+                        }
+                    }
+                }
+            }
+            
+            updateDisplay() {
+                this.element.textContent = this.displayedText;
+                if (this.cursorElement) {
+                    this.element.appendChild(this.cursorElement);
+                }
+            }
+        }
+        
         // ===== HAMBURGER MENU FUNCTIONALITY =====
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1464,22 +1644,11 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight;
-                    
                     // Enhanced smooth scrolling with better performance
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    
-                    // Alternative method for better browser support
-                    if (!('scrollBehavior' in document.documentElement.style)) {
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
                 }
             });
         });
@@ -1491,6 +1660,214 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+        
+        // ===== INITIALIZE TYPING EFFECT =====
+        // Initialize typing effect when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const typingElement = document.getElementById('typing-text');
+            if (typingElement) {
+                new TextType(typingElement, [
+                    "We create websites that move at the speed of your ideas.",
+                    "Modern web development that drives results.",
+                    "Fast, reliable, and affordable solutions."
+                ], {
+                    typingSpeed: 75,
+                    pauseDuration: 1500,
+                    deletingSpeed: 30,
+                    loop: true,
+                    showCursor: true,
+                    cursorCharacter: "|"
+                });
+            }
+            
+            // ===== INITIALIZE SCROLL ANIMATIONS =====
+            initializeScrollAnimations();
+            
+            // ===== INITIALIZE IRIDESCENCE BACKGROUND =====
+            initializeIridescence();
+        });
+        
+        // ===== IRIDESCENCE BACKGROUND FUNCTIONALITY =====
+        function initializeIridescence() {
+            const container = document.getElementById('iridescence-bg');
+            if (!container) return;
+            
+            // Create canvas for WebGL
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl');
+            if (!gl) return;
+            
+            container.appendChild(canvas);
+            
+            // Shader sources
+            const vertexShaderSource = `
+                attribute vec2 position;
+                void main() {
+                    gl_Position = vec4(position, 0.0, 1.0);
+                }
+            `;
+            
+            const fragmentShaderSource = `
+                precision highp float;
+                
+                uniform float uTime;
+                uniform vec2 uResolution;
+                uniform vec2 uMouse;
+                uniform float uAmplitude;
+                uniform float uSpeed;
+                
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / uResolution.xy;
+                    vec2 centered = (uv * 2.0 - 1.0) * uResolution.xy / min(uResolution.x, uResolution.y);
+                    
+                    centered += (uMouse - vec2(0.5)) * uAmplitude;
+                    
+                    float d = -uTime * 0.5 * uSpeed;
+                    float a = 0.0;
+                    
+                    for (float i = 0.0; i < 8.0; ++i) {
+                        a += cos(i - d - a * centered.x);
+                        d += sin(centered.y * i + a);
+                    }
+                    
+                    d += uTime * 0.5 * uSpeed;
+                    vec3 col = vec3(
+                        cos(centered * vec2(d, a)) * 0.6 + 0.4,
+                        cos(a + d) * 0.5 + 0.5
+                    );
+                    
+                    col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5) * vec3(1.0, 0.5, 0.0); // Orange color
+                    gl_FragColor = vec4(col, 0.8);
+                }
+            `;
+            
+            // Compile shaders
+            const vertexShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+            const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+            
+            // Create program
+            const program = createProgram(gl, vertexShader, fragmentShader);
+            gl.useProgram(program);
+            
+            // Set up geometry (full-screen quad)
+            const positions = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+            
+            const positionLocation = gl.getAttribLocation(program, 'position');
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+            
+            // Set up uniforms
+            const timeLocation = gl.getUniformLocation(program, 'uTime');
+            const resolutionLocation = gl.getUniformLocation(program, 'uResolution');
+            const mouseLocation = gl.getUniformLocation(program, 'uMouse');
+            const amplitudeLocation = gl.getUniformLocation(program, 'uAmplitude');
+            const speedLocation = gl.getUniformLocation(program, 'uSpeed');
+            
+            // Set initial uniform values
+            gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+            gl.uniform2f(mouseLocation, 0.5, 0.5);
+            gl.uniform1f(amplitudeLocation, 0.1);
+            gl.uniform1f(speedLocation, 1.0);
+            
+            // Handle resize
+            function resize() {
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+            }
+            
+            resize();
+            window.addEventListener('resize', resize);
+            
+            // Mouse interaction
+            let mouseX = 0.5, mouseY = 0.5;
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                mouseX = (e.clientX - rect.left) / rect.width;
+                mouseY = 1.0 - (e.clientY - rect.top) / rect.height;
+                gl.uniform2f(mouseLocation, mouseX, mouseY);
+            });
+            
+            // Animation loop
+            function animate(time) {
+                gl.uniform1f(timeLocation, time * 0.001);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(animate);
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Helper functions for WebGL
+        function compileShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Shader compilation error:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+        
+        function createProgram(gl, vertexShader, fragmentShader) {
+            const program = gl.createProgram();
+            gl.attachShader(program, vertexShader);
+            gl.attachShader(program, fragmentShader);
+            gl.linkProgram(program);
+            
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                console.error('Program linking error:', gl.getProgramInfoLog(program));
+                gl.deleteProgram(program);
+                return null;
+            }
+            return program;
+        }
+        
+        // ===== SCROLL ANIMATION FUNCTIONALITY =====
+        function initializeScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+            
+            // Create intersection observer for smooth animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe all animated elements
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // ===== CONTACT FORM SUBMISSION =====
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            fetch("https://script.google.com/macros/s/AKfycbwTPsBziL-otjgMc716eDVYytDOG_f1eM7J8Kh4zVd8d-_2x6xhDOEOTiWtvnVMuJ1q/exec", {
+                method: "POST",
+                body: JSON.stringify({
+                    name: e.target.name.value,
+                    email: e.target.email.value,
+                    message: e.target.message.value
+                })
+            })
+            .then(res => res.json())
+            .then(data => alert("Message sent! We'll get back to you soon."))
+            .catch(err => alert("Error sending message."));
         });
     </script>
 </body>
